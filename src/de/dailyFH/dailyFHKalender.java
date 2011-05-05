@@ -19,7 +19,7 @@ public class dailyFHKalender extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		menu.add(0, TERMINEINFUEGEN, 0, "Termin eintragen");
-		menu.add(0, TERMINLOESCHEN, 0, "Termin löschen");
+		menu.add(0, TERMINLOESCHEN, 0, "Termin lÃ¶schen");
 		return super.onCreateOptionsMenu(menu);
 	} // onCreateOptionsMenu
 	
