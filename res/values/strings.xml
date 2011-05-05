@@ -9,4 +9,9 @@
     <string name="buttonMensa">Mensa</string>
     <string name="buttonStundenplan">Kalender</string>
     <string name="buttonEinstellungen">Einstellungen</string>
+    <string name="KalenderTitel">Kalender</string>
+    <string name="KalenderCBStundenplan">Stundenplan</string>
+    <string name="KalenderCBSemesterzeitplan">Semesterzeitplan</string>
+    <string name="KalenderCBPruefungen">Prüfungen</string>
+    <string name="KalenderCBManuelleTermine">Manuelle Termine</string>
 </resources>

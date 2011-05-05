@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@drawable/bgnologo">
+    
+    <RelativeLayout 
+	    android:layout_width="wrap_content" 
+	    android:id="@+id/containerLayout" 
+	    android:layout_height="match_parent">
+    
+   		<ImageView 
+   			android:layout_width="wrap_content" 
+   			android:src="@drawable/icon" 
+   			android:layout_height="wrap_content" 
+   			android:id="@+id/logo"
+   			android:layout_marginLeft="15dip"
+   			android:layout_marginTop="15dip">
+   		</ImageView> 
+    	
+    	<TextView 
+    		android:text="@string/KalenderTitel" 
+	    	android:id="@+id/TitelKalender" 
+	    	android:layout_width="wrap_content" 
+	    	android:layout_height="wrap_content"
+	    	android:layout_marginLeft="100dip"
+	    	android:layout_marginTop="15dip" 
+	    	android:textSize="30px"
+	    	android:textColor="#000000">
+    	</TextView>
+
+	   <View 
+			android:layout_width="fill_parent"
+			android:layout_height="2dip"
+			android:background="#c0c0c0c0" 
+			android:layout_marginTop="80dip"
+			android:layout_marginLeft="10dip"
+			android:layout_marginRight="10dip"
+		/>
+	   
+	   <!-- Checkbox fuer Stundenplan -->
+	   <CheckBox
+	   		android:layout_width="wrap_content" 
+	   		android:text="@string/KalenderCBStundenplan" 
+	   		android:layout_alignParentLeft="true" 
+	   		android:id="@+id/CBStundenplan" 
+	   		android:textColor="#000000"
+	   		android:layout_marginTop="80dip"
+	   		android:layout_marginLeft="5dip" 
+	   		android:layout_height="50dip"
+	   		android:paddingLeft="40dip">
+	   	</CheckBox>
+  
+ 		<!-- Checkbox fuer Semesterzeitplan -->
+  		<CheckBox
+	   		android:layout_width="wrap_content" 
+	   		android:text="@string/KalenderCBSemesterzeitplan" 
+	   		android:layout_alignParentLeft="true" 
+	   		android:id="@+id/CBStundenplan" 
+	   		android:textColor="#000000"
+	   		android:layout_marginTop="80dip"
+	   		android:layout_marginLeft="145dip" 
+	   		android:layout_height="50dip"
+	   		android:paddingLeft="40dip">
+	   	</CheckBox>
+
+		<!-- Checkbox fuer Pruefungen -->
+  		<CheckBox
+	   		android:layout_width="wrap_content" 
+	   		android:text="@string/KalenderCBPruefungen" 
+	   		android:layout_alignParentLeft="true" 
+	   		android:id="@+id/CBStundenplan" 
+	   		android:textColor="#000000"
+	   		android:layout_marginTop="130dip"
+	   		android:layout_marginLeft="5dip" 
+	   		android:layout_height="50dip"
+	   		android:paddingLeft="40dip">
+	   	</CheckBox>
+	   	
+	   	<!-- Checkbox fuer Manuelle Termine -->
+	   	<CheckBox
+	   		android:layout_width="wrap_content" 
+	   		android:text="@string/KalenderCBManuelleTermine" 
+	   		android:layout_alignParentLeft="true" 
+	   		android:id="@+id/CBStundenplan" 
+	   		android:textColor="#000000"
+	   		android:layout_marginTop="130dip"
+	   		android:layout_marginLeft="145dip" 
+	   		android:layout_height="50dip"
+	   		android:paddingLeft="40dip">
+	   	</CheckBox>
+	   	
+	   	<!-- Hier soll jetzt der Kalender kommen, was aber gar nicht so einfach ist.
+	   		http://jimblackler.net/blog/?p=151
+	   		http://e7o.de/3_entry_145-Android-Kalendereintr%E4ge-lesen.htm
+	   		http://android.arnodenhond.com/tutorials/calendar
+	    -->
+	   	<ImageView 
+	   		android:layout_width="300dip" 
+	   		android:layout_height="wrap_content" 
+	   		android:src="@drawable/kalendergrafik" 
+	   		android:id="@+id/KalenderFake" 
+	   		
+	   		android:layout_marginLeft="10dip"
+	   		android:layout_marginTop="190dip">
+	   	</ImageView>
+	    
+    </RelativeLayout>
+</LinearLayout>
