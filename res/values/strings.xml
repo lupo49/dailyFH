@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, dailyFHLogin!</string>
+    <string name="app_name">dailyFH</string>
+    <string name="labelPinEigeben">Pin:</string>
+    <string name="buttonOK">OK</string>
+    <string name="labelRegisterAcc">Als neuer Student anmelden</string>
+    <string name="buttonAktuelles">Aktuelles</string>
+    <string name="buttonMensa">Mensa</string>
+    <string name="buttonStundenplan">Kalender</string>
+    <string name="buttonEinstellungen">Einstellungen</string>
+</resources>
