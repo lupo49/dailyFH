@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 public class dailyFHLogin extends Activity {
 
-// ETST
+
 	// Gui-Elemente
 	private Button submitButton;
 	private EditText pinEingabe;
@@ -37,9 +37,9 @@ public class dailyFHLogin extends Activity {
 
 		// Fokus auf TextView setzen damit nicht automatisch das Keyboard
 		// eingeblendet ist
-		TextView labelPin = (TextView) this.findViewById(R.id.labelPin);
-		labelPin.setFocusableInTouchMode(true);
-		labelPin.requestFocus();
+		TextView labelRegister = (TextView) this.findViewById(R.id.labelRegisterAccount);
+		labelRegister.setFocusableInTouchMode(true);
+		labelRegister.requestFocus();
 
 		// Intent fuer das Menue initialisieren
 		intent = new Intent(this, dailyFHMenu.class);
