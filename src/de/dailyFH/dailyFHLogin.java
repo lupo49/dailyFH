@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 public class dailyFHLogin extends Activity {
 
+// ETST
 	// Gui-Elemente
 	private Button submitButton;
 	private EditText pinEingabe;
