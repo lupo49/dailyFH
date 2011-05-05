@@ -32,6 +32,10 @@ public class dailyFHMenu extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_menue);
 
+		
+		// TEST
+		
+		
 		// Intent fuer die Module initialisieren
 		intentAktuelles = new Intent(this, dailyFHLogin.class);
 		intentEinstellungen = new Intent(this, dailyFHLogin.class);
