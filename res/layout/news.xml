@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView 
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		android:id="@+id/scrollView" 
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content"
+		android:background="@drawable/bgnologo">  
+
+    
+    <RelativeLayout 
+		android:layout_height="match_parent" 
+		android:layout_width="wrap_content" 
+	    android:id="@+id/containerLayout" >
+	    
+    
+   		<ImageView 
+   			android:layout_width="wrap_content" 
+   			android:src="@drawable/icon" 
+   			android:layout_height="wrap_content" 
+   			android:id="@+id/logo"
+   			android:layout_marginLeft="15dip"
+   			android:layout_marginTop="15dip">
+   		</ImageView>
+   		
+    	<TextView 
+    		android:text="@string/NewsTitel" 
+	    	android:id="@+id/TitelNews" 
+	    	android:layout_width="wrap_content" 
+	    	android:layout_height="wrap_content"
+	    	android:layout_marginLeft="100dip"
+	    	android:layout_marginTop="15dip" 
+	    	android:textSize="30px"
+	    	android:textColor="#000000">
+    	</TextView>
+
+	   <View 
+			android:layout_width="match_parent"
+			android:layout_height="2dip"
+			android:background="#c0c0c0c0" 
+			android:layout_marginTop="80dip"
+			android:layout_marginLeft="10dip"
+			android:layout_marginRight="10dip"
+		/>
+
+	   <TableLayout 
+	   		xmlns:android="http://schemas.android.com/apk/res/android"
+    		android:id="@+id/table"
+    	 	android:layout_width="match_parent"
+    		android:layout_height="match_parent"
+    		android:layout_marginLeft="8dip" 
+    		android:layout_marginRight="8dip" 
+    		android:layout_marginTop="85dip">
+     		<TableRow 
+     			android:id="@+id/rowRefresh" 
+     			android:layout_height="wrap_content"
+     			android:layout_width="match_parent">
+     			<Button 
+     				android:id="@+id/buttonRefresh" 
+     				android:text="Aktualisieren" 
+     				android:layout_height="wrap_content" 
+     				android:layout_width="300dip" 
+     			/>
+     		</TableRow>
+     	</TableLayout>	 
+   
+    </RelativeLayout>
+
+</ScrollView>   
