@@ -9,8 +9,8 @@ import android.view.View.*;
 import android.widget.*;
 import android.view.ViewGroup.LayoutParams;
 
-/* Nächste Schritte:
- * Löschen der alten News bei erneuten Klick auf aktualisieren
+/* NÃ¤chste Schritte:
+ * LÃ¶schen der alten News bei erneuten Klick auf aktualisieren
  * Verfeinerung der Positionierung
  * Suche nach automatischen Umbruch in TextViews
  */
@@ -48,7 +48,7 @@ public class dailyFHNews extends Activity {
 	public void createNews()
 	{
 		//String zum entgegennehmen der News in der Form [?][3] 
-		//---> drei, da es Immer Überschrift,Datum und Inhalt gibt
+		//---> drei, da es Immer Ãœberschrift,Datum und Inhalt gibt
 		String[][] news= getNews();
 		//Zum Fortmatieren der Texte Mittels HTML
 		CharSequence styledText;
@@ -58,16 +58,16 @@ public class dailyFHNews extends Activity {
 		{
 			for(int j=0; j<news[i].length; j++)
 			{
-				//Erstellen einer neuen Zeile für die Tabelle
+				//Erstellen einer neuen Zeile fÃ¼r die Tabelle
 		        TableRow row = new TableRow(this);
 		        row.setLayoutParams(new LayoutParams(
 		                       LayoutParams.MATCH_PARENT,
 		                       LayoutParams.WRAP_CONTENT));
 		       
-		       //Erstellen eines neuen TextViews für die Zeile
+		       //Erstellen eines neuen TextViews fÃ¼r die Zeile
 		        TextView text= new TextView(this);
 		        
-		        //Abfrage, ob es sich um Überschrift, Datum oder Inhalt handelt
+		        //Abfrage, ob es sich um Ãœberschrift, Datum oder Inhalt handelt
 		        //demensprechende Formation
 		        if(j==0)
 		        {
@@ -89,10 +89,10 @@ public class dailyFHNews extends Activity {
 		        text.setText(styledText);
 		        text.setTextColor(Color.BLACK);
 		
-		        // der Zeile wird der TextView hinzugefügt 
+		        // der Zeile wird der TextView hinzugefÃ¼gt 
 		        row.addView(text);
 		 
-		        //der Tabelle wird die Zeile hinzugefügt
+		        //der Tabelle wird die Zeile hinzugefÃ¼gt
 		        table.addView(row);
 			}
 		}
@@ -101,7 +101,7 @@ public class dailyFHNews extends Activity {
 	public String[][] getNews()
 	{
 		//Diese Funktion ist nur zu Demozwecken
-		//Später sollen hier die News des FH-Server ausgewertet/aufbereitet werden
+		//SpÃ¤ter sollen hier die News des FH-Server ausgewertet/aufbereitet werden
 		String[][] news=new String[5][3];
 		
 		news[0][0]="Projekt- und Bachelorarbeit (Thema: Cloud Computing mit <br/>OpenNebula)";
@@ -115,10 +115,10 @@ public class dailyFHNews extends Activity {
 		news[2][2]="Aufgrund einer Erkrankung muss leider am Donnerstag, den 5.5.11 das <br/>Statistik Tutorium bei Frau Pantea Kock ausfallen.";
 		news[3][0]="Tutorium Analysis 2";
 		news[3][1]="Mittwoch, 4. Mai 2011 08:57";
-		news[3][2]="Das Tutorium zum Kurs Analysis 2 findet zukünftig <br/> im Raum A.1.02 statt.";
+		news[3][2]="Das Tutorium zum Kurs Analysis 2 findet zukÃ¼nftig <br/> im Raum A.1.02 statt.";
 		news[4][0]="Vortrag von Hr. Kollmeier, GF der apsolut GmbH  zum Thema SAP SRM";
 		news[4][1]="Montag, 2. Mai 2011 22:26";
-		news[4][2]="Am Mittwoch, den 4.5. wird um 12 Uhr in A.E.01 Hr. Kollmeier,<br/> Geschäftsführer der apsolut GmbH...";
+		news[4][2]="Am Mittwoch, den 4.5. wird um 12 Uhr in A.E.01 Hr. Kollmeier,<br/> GeschÃ¤ftsfÃ¤hrer der apsolut GmbH...";
 		
 		return news;
 	}
