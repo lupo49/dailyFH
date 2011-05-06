@@ -17,12 +17,9 @@ import android.view.ViewGroup.LayoutParams;
 
 public class dailyFHNews extends Activity {
 
-
-
 	// Button zum Aktualisieren der News und die Gesamte News-Tabelle
 	private Button buttonAktualisieren;
 	private TableLayout table;
-
 
 	/** Called when the activity is first created. */
 	@Override
@@ -33,7 +30,6 @@ public class dailyFHNews extends Activity {
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.news);
-
 
 		// Tabelle initalisieren
 		table = (TableLayout)findViewById(R.id.table);
@@ -47,7 +43,6 @@ public class dailyFHNews extends Activity {
 				createNews();
 			}
 		});
-
 	}
 	
 	public void createNews()
