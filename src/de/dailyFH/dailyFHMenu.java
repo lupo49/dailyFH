@@ -10,8 +10,6 @@ import android.widget.Button;
 
 public class dailyFHMenu extends Activity {
 
-
-
 	// Buttons des Menues
 	private Button buttonAktuelles;
 	private Button buttonMensa;
