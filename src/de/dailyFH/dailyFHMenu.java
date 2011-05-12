@@ -37,7 +37,7 @@ public class dailyFHMenu extends Activity {
 		// Intent fuer die Module initialisieren
 		intentAktuelles = new Intent(this, dailyFHLogin.class);
 		intentEinstellungen = new Intent(this, dailyFHLogin.class);
-		intentKalender = new Intent(this, dailyFHLogin.class);
+		intentKalender = new Intent(this, dailyFHKalender.class);
 		intentMensa = new Intent(this, dailyFHLogin.class);
 
 		// Buttons initalisieren und Onclick legen

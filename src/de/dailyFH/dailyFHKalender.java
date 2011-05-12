@@ -1,9 +1,14 @@
 package de.dailyFH;
 
+import java.io.InputStream;
+
+import de.dailyFH.libs.XMLParser;
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
 
 public class dailyFHKalender extends Activity {
 
@@ -12,8 +17,20 @@ public class dailyFHKalender extends Activity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		// App Titelleiste ausblenden
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
+		
+		try {
+		InputStream is = getAssets().open("semesterzeitplan.xml");
+		XMLParser xmlp = new XMLParser();
+		xmlp.init(is);
+		xmlp.elementeAusgeben();
+		}catch(Exception e ) {
+			Log.i("dailyFHKalender", "XMLPARSER - " + e.getMessage());
+		}
 	} // onCreate
 	
 	@Override

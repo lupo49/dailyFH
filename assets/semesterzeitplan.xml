@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Semesterzeitplan>
+    <titel>Semesterzeitplan</titel>
+    <eintrag>
+      <name>Studienbeginn</name>
+      <datum>22.02.2011</datum>
+    </eintrag>
+    <eintrag>
+        <name>Studienende</name>
+        <datum>01.07.2011</datum>
+    </eintrag>
+</Semesterzeitplan>

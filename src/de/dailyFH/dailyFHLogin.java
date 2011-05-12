@@ -65,7 +65,7 @@ public class dailyFHLogin extends Activity {
 					finish();
 				} else {
 					// Pin ist nicht gueltig
-					Log.i("1", "PIN ist nicht gleich der geforderten");
+					Log.i("1", "PIN ist nicht gleich");
 
 					// TODO - Fehlermeldung ausgeben
 				}
