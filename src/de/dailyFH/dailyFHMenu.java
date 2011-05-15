@@ -26,26 +26,20 @@ public class dailyFHMenu extends Activity {
 
 		// App Titelleiste ausblenden
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_menue);
-
-		
-		// TEST
-		
 		
 		// Intent fuer die Module initialisieren
-		intentAktuelles = new Intent(this, dailyFHLogin.class);
+		intentAktuelles = new Intent(this, dailyFHNews.class);
 		intentEinstellungen = new Intent(this, dailyFHLogin.class);
 		intentKalender = new Intent(this, dailyFHKalender.class);
-		intentMensa = new Intent(this, dailyFHLogin.class);
+		intentMensa = new Intent(this, dailyFHMensaplan.class);
 
 		// Buttons initalisieren und Onclick legen
 		buttonAktuelles = (Button) findViewById(R.id.buttonAktuelles);
 		buttonAktuelles.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				startActivity(intentAktuelles);
 			}
 		});
@@ -54,7 +48,6 @@ public class dailyFHMenu extends Activity {
 		buttonMensa.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				startActivity(intentMensa);
 			}
 		});
@@ -63,7 +56,6 @@ public class dailyFHMenu extends Activity {
 		buttonKalender.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				startActivity(intentKalender);
 			}
 		});
@@ -72,7 +64,6 @@ public class dailyFHMenu extends Activity {
 		buttonEinstellungen.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				startActivity(intentEinstellungen);
 			}
 		});
