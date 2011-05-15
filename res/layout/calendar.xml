@@ -57,7 +57,7 @@
 	   		android:layout_width="wrap_content" 
 	   		android:text="@string/KalenderCBSemesterzeitplan" 
 	   		android:layout_alignParentLeft="true" 
-	   		android:id="@+id/CBStundenplan" 
+	   		android:id="@+id/CBSemesterzeitplan" 
 	   		android:textColor="#000000"
 	   		android:layout_marginTop="80dip"
 	   		android:layout_marginLeft="145dip" 
@@ -96,15 +96,15 @@
 	   		http://e7o.de/3_entry_145-Android-Kalendereintr%E4ge-lesen.htm
 	   		http://android.arnodenhond.com/tutorials/calendar
 	    -->
-	   	<ImageView 
-	   		android:layout_width="300dip" 
-	   		android:layout_height="wrap_content" 
-	   		android:src="@drawable/kalendergrafik" 
-	   		android:id="@+id/KalenderFake" 
-	   		
-	   		android:layout_marginLeft="10dip"
-	   		android:layout_marginTop="190dip">
-	   	</ImageView>
 	    
+	    <TableLayout
+	       xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/kalenderTable"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="8dip" 
+            android:layout_marginRight="8dip" 
+            android:layout_marginTop="185dip">
+         </TableLayout>
     </RelativeLayout>
 </LinearLayout>

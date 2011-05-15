@@ -1,12 +1,18 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<Semesterzeitplan>
-    <titel>Semesterzeitplan</titel>
-    <eintrag>
-      <name>Studienbeginn</name>
-      <datum>22.02.2011</datum>
-    </eintrag>
-    <eintrag>
-        <name>Studienende</name>
-        <datum>01.07.2011</datum>
-    </eintrag>
-</Semesterzeitplan>
+<?xml version="1.0" encoding="iso-8859-15"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+    <title>FB Informatik - Semesterzeitplan</title>
+    <link>http://www.inf.fh-dortmund.de</link>
+    <description>Semesterzeitplan - FB Informatik</description>
+    <language>de-de</language>
+
+	<item>
+	    <name><![CDATA[ Semesterbeginn ]]></name>
+	    <datum><![CDATA[ 22.02.2011 ]]></datum>
+	</item>
+	<item>
+	    <name><![CDATA[ Semesterende ]]></name>
+		<datum><![CDATA[ 01.07.2011 ]]></datum>
+	</item>
+</channel>
+</rss>
