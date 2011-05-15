@@ -44,7 +44,7 @@
 	   <TableLayout 
 	   		xmlns:android="http://schemas.android.com/apk/res/android"
     		android:id="@+id/table"
-    	 	android:layout_width="match_parent"
+            android:layout_width="match_parent"
     		android:layout_height="match_parent"
     		android:layout_marginLeft="8dip" 
     		android:layout_marginRight="8dip" 
@@ -52,7 +52,8 @@
      		<TableRow 
      			android:id="@+id/rowRefresh" 
      			android:layout_height="wrap_content"
-     			android:layout_width="match_parent">
+     			android:layout_width="300dip">
+
      			<Button 
      				android:id="@+id/buttonRefresh" 
      				android:text="Aktualisieren" 
