@@ -3,6 +3,7 @@
     <string name="hello">Hello World, dailyFHLogin!</string>
     <string name="app_name">dailyFH</string>
     <string name="labelPinEigeben">Pin:</string>
+    <string name="labelMatrikelnummerEigeben">Matrikelnummer:</string>
     <string name="buttonLogin">Anmelden</string>
     <string name="labelRegisterAcc">Als neuer Student anmelden</string>
     <string name="buttonAktuelles">Aktuelles</string>
@@ -16,4 +17,7 @@
     <string name="KalenderCBManuelleTermine">Manuelle Termine</string>
     <string name="NewsTitel">Aktuelles</string>
     <string name="MensaplanTitel">Mensaplan</string>
+    <string name="labelMatr">Matrikelnummer</string>
+    <string name="labelString">Pin:</string>
+    <string name="buttonRegister">Registrieren</string>
 </resources>
