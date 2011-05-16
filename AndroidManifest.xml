@@ -24,6 +24,7 @@
         <activity android:name=".dailyFHMensaplan" android:label="@string/app_name" />
         <activity android:name=".dailyFHNews" android:label="@string/app_name" />
         <activity android:name=".dailyFHKalender" android:label="@string/app_name" />
-
+		<activity android:name=".dailyFHRegister" android:label="@string/app_name" />
+		
     </application>
 </manifest>
