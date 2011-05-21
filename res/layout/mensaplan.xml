@@ -52,12 +52,39 @@
      			android:layout_height="wrap_content"
      			android:layout_width="match_parent">
      			<Spinner 
-     				android:id="@+id/spinnerAuswahl" 
-     				android:text="Aktualisieren" 
+     				android:id="@+id/spinnerMensa"
      				android:layout_height="wrap_content" 
-     				android:layout_width="300dip" 
+     				android:layout_width="300dip"
+     				android:entries="@array/sp_what_mensa_entries"  
      			/>
      		</TableRow>
+     		<TableRow 
+     			android:id="@+id/rowAuswahl" 
+     			android:layout_height="wrap_content"
+     			android:layout_width="match_parent">
+     			<Spinner 
+     				android:id="@+id/spinnerMenue"
+     				android:layout_height="wrap_content" 
+     				android:layout_width="300dip"
+     				android:entries="@array/sp_what_nord"  
+     			/>
+     		</TableRow>
+     		<TableRow 
+     			android:id="@+id/rowAuswahl" 
+     			android:layout_height="wrap_content"
+     			android:layout_width="match_parent">
+     			<ScrollView 
+					xmlns:android="http://schemas.android.com/apk/res/android"
+					android:id="@+id/scrollView" 
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content">
+     				<TableLayout 
+     					android:layout_width="match_parent" 
+     					android:id="@+id/tableInhalt" 
+     					android:layout_height="match_parent">
+     				</TableLayout>
+				</ScrollView>
+			</TableRow>
      	</TableLayout>
 	    
     </RelativeLayout>
