@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+  <array name="sp_what_mensa_entries">
+    <item>Mensa Campus Nord</item>
+    <item>Mensa Sonnenstraße</item>
+    <item>KostBar</item>        
+  </array>
+  <array name="sp_what_nord">
+    <item>Aktuelles Tagesmenü</item>
+    <item>Spezielle Menüs der Woche</item>       
+  </array> 
+  <array name="sp_what_sonnen">
+    <item>Aktuelles Tagesmenü</item>       
+  </array>
+  <array name="sp_what_kostbar">
+    <item>Aktuelles Tagesmenü</item>   
+  </array>   
+</resources>
