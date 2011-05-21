@@ -17,7 +17,6 @@ import android.widget.TextView;
 
 public class dailyFHLogin extends Activity {
 
-
 	// Gui-Elemente
 	private Button submitButton;
 	private EditText pinEingabe;
@@ -26,8 +25,7 @@ public class dailyFHLogin extends Activity {
 	private Intent intent;
 	private Intent intentRegister;
 	private EditText MatrikelnummerEingabe;
-	
-	
+
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -41,28 +39,31 @@ public class dailyFHLogin extends Activity {
 		// Buttons initialisieren
 		submitButton = (Button) this.findViewById(R.id.buttonPinOK);
 		pinEingabe = (EditText) this.findViewById(R.id.inputPinEingabe);
-		MatrikelnummerEingabe = (EditText) this.findViewById(R.id.inputMatrikelEingabe);
-		
+		MatrikelnummerEingabe = (EditText) this
+				.findViewById(R.id.inputMatrikelEingabe);
+
 		// Fokus auf TextView setzen damit nicht automatisch das Keyboard
 		// eingeblendet ist
-		TextView labelRegister = (TextView) this.findViewById(R.id.labelRegisterAccount);
+		TextView labelRegister = (TextView) this
+				.findViewById(R.id.labelRegisterAccount);
 		labelRegister.setFocusableInTouchMode(true);
 		labelRegister.requestFocus();
 
 		// Intent fuer das Menue initialisieren
 		intent = new Intent(this, dailyFHMenu.class);
 		intentRegister = new Intent(this, dailyFHRegister.class);
-		
+
 		// Listener beim Button anmelden
 		submitButton.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				
+
 				// Pruefe Eingabe ab
-				if (pruefPin(pinEingabe.getText().toString(), MatrikelnummerEingabe.getText().toString())) {
+				if (pruefPin(pinEingabe.getText().toString(),
+						MatrikelnummerEingabe.getText().toString())) {
 					// Pin ist gueltig
-					Log.i("1", "PIN ist korrekt geprŸft worden");
+					Log.i("1", "PIN ist korrekt geprï¿½ft worden");
 
 					// neue Activity starten
 					startActivity(intent);
@@ -75,53 +76,52 @@ public class dailyFHLogin extends Activity {
 					Log.i("1", "PIN ist nicht gleich");
 
 					// TODO - Fehlermeldung ausgeben
-					//		- Fehlerfenster
+					// - Fehlerfenster
 				}
 			}
 		}); // Ende OnClickListener
-		
+
 		labelRegister.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				// Neue Activity starten
-				startActivity(intentRegister); 
-				
+				startActivity(intentRegister);
+
 				// Login beenden
 				finish();
 			}
 		});
-		
+
 	} // Ende onCreate
-	
-	
-	public boolean pruefPin(String pin, String matr){
-		
+
+	public boolean pruefPin(String pin, String matr) {
+
 		// Ausgaben zum Debuggen
 		Log.i("Methode", "pruefPin");
 		Log.i("Pin-eingabe", md5(pin));
-		
-		// Variable fŸr return
+
+		// Variable fï¿½r return
 		boolean erg = false;
-		
+
 		// Preferencdatei
 		String file = matr + "_prefs";
-		
+
 		// Preferences laden
 		SharedPreferences settings = getSharedPreferences(file, 0);
-		
+
 		// Gespeicherte Daten zum Debuggen ausgeben
 		Log.i("PIN-saved", settings.getString("Pin", "0000"));
 		Log.i("MATR-saved", settings.getString("Matrikelnummer", "matrikel"));
-		
+
 		// eingegeben Pin mit der gespeicherten abgleichen
-		if(md5(pin).equals(settings.getString("Pin", "0000"))){
+		if (md5(pin).equals(settings.getString("Pin", "0000"))) {
 			Log.i("preufPiN", "Ist gleich");
 			erg = true;
 		}
 		return erg;
 	}
-	
+
 	private String md5(String in) {
 		MessageDigest digest;
 		try {
@@ -132,11 +132,13 @@ public class dailyFHLogin extends Activity {
 			int len = a.length;
 			StringBuilder sb = new StringBuilder(len << 1);
 			for (int i = 0; i < len; i++) {
-			       sb.append(Character.forDigit((a[i] & 0xf0) >> 4, 16));
-			       sb.append(Character.forDigit(a[i] & 0x0f, 16));
+				sb.append(Character.forDigit((a[i] & 0xf0) >> 4, 16));
+				sb.append(Character.forDigit(a[i] & 0x0f, 16));
 			}
 			return sb.toString();
-		} catch (NoSuchAlgorithmException e) { e.printStackTrace(); }
-			return null;
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
 		}
+		return null;
+	}
 }
