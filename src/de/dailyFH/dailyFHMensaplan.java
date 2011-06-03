@@ -95,8 +95,10 @@ public class dailyFHMensaplan extends Activity {
 						int position, long id) {
 					String text = (String) spinnerAuswahl.getAdapter().getItem(
 							position);
-					// FIXME - Es muessen Rueckgabewerte definiert werden.
-					mensaplanFK.updateMensaMenueNord(text, table);
+
+					String[][] menueS1S2 = mensaplanFK.updateMensaMenueNord(text, table);
+					menueS1 = menueS1S2[0];
+					menueS2 = menueS1S2[1];
 					designPlanNord(text);
 				}
 
@@ -118,8 +120,10 @@ public class dailyFHMensaplan extends Activity {
 						int position, long id) {
 					String text = (String) spinnerAuswahl.getAdapter().getItem(
 							position);
-					// FIXME - Es muessen Rueckgabewerte definiert werden.
-					mensaplanFK.updateMensaMenueSonne(text, table);
+					
+					String[][] menueS1S2 = mensaplanFK.updateMensaMenueSonne(text, table);
+					menueS1 = menueS1S2[0];
+					menueS2 = menueS1S2[1];
 					designPlanSonne(text);
 				}
 
@@ -142,8 +146,10 @@ public class dailyFHMensaplan extends Activity {
 					String text = (String) spinnerAuswahl.getAdapter().getItem(
 							position);
 					// FIXME - Es muessen Rueckgabewerte definiert werden.
-					int i = mensaplanFK.updateMensaMenueKost(text, table);
-					designPlanKost(i, text);
+					String[][] menueS1S2 = mensaplanFK.updateMensaMenueKost(text, table);
+					menueS1 = menueS1S2[0];
+					menueS2 = menueS1S2[1];
+					designPlanKost(menueS1.length, text);
 				}
 
 				@Override

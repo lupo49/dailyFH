@@ -16,40 +16,35 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
+import de.dailyFH.Webservices.NewsWS;
+
 import android.app.Activity;
 import android.content.Context;
 
 public class NewsFK extends Activity {
 
 	String[][] news = new String[3][15];
+	private de.dailyFH.Webservices.NewsWS newsWS;
 	
-	public void getFile() throws XmlPullParserException, IOException,
-			IllegalStateException, MalformedURLException, ProtocolException,
-			IOException, FileNotFoundException {
-
-		FileOutputStream os;
-		final String url_str = "http://www.inf.fh-dortmund.de/rss.php";
-
-		os = openFileOutput("news.xml", Context.MODE_PRIVATE);
-		URL url = new URL(url_str.replace(" ", "%20"));
-		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-		conn.setRequestMethod("GET");
-		conn.connect();
-
-		int responseCode = conn.getResponseCode();
-
-		if (responseCode == HttpURLConnection.HTTP_OK) {
-			byte tmp_buffer[] = new byte[4096];
-			InputStream is = conn.getInputStream();
-			int n;
-			while ((n = is.read(tmp_buffer)) > 0) {
-				os.write(tmp_buffer, 0, n);
-				os.flush();
-			}
-		} else {
-			throw new IllegalStateException("HTTP response: " + responseCode);
+	public boolean dateiLaden() {
+		newsWS = new NewsWS();
+		try {
+			newsWS.getFile();
+			return true;
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (ProtocolException e) {
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (XmlPullParserException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		os.close();
+		return false;
 	}
 	
 	public String[][] parseFile(String dateiname) throws XmlPullParserException, IOException, FileNotFoundException {

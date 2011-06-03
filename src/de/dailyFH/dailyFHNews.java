@@ -95,9 +95,10 @@ public class dailyFHNews extends Activity {
 		// String zum Entgegennehmen der News in der Form [?][3]
 		// ---> drei, da es Immer Überschrift, Datum und Inhalt gibt
 		try {
-			newsFK.getFile();
-			newsFK.parseFile("news.xml");
-			designNews();
+			if(newsFK.dateiLaden()) {
+				newsFK.parseFile("news.xml");
+				designNews();
+			}
 		} catch (Exception e) {
 			// FIXME - Die Fehlermeldungen werden alle untereinander aufgereiht
 			this.deleteFile("news.xml");
