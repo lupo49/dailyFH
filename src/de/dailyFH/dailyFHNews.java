@@ -1,20 +1,12 @@
 package de.dailyFH;
 
-import java.io.*;
-import java.net.*;
-
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlPullParserFactory;
+import de.dailyFH.FK.NewsFK;
 
 import android.app.Activity;
-import android.content.Context;
-
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
-
 import android.view.*;
 import android.view.View.*;
 import android.widget.*;
@@ -39,9 +31,13 @@ public class dailyFHNews extends Activity {
 	// String-Array für die 15. aktuellsten News (Title,Description,Date)
 	String[][] news = new String[3][15];
 
+	private de.dailyFH.FK.NewsFK newsFK;
+
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+
+		newsFK = new NewsFK();
 
 		// App Titelleiste ausblenden
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -69,13 +65,14 @@ public class dailyFHNews extends Activity {
 		}
 
 		try {
-			parseFile();
+			news = newsFK.parseFile("news.xml");
 			designNews();
 		} catch (Exception e) {
 
 			CharSequence styledText;
 			TableRow row_empty = new TableRow(this);
-			row_empty.setLayoutParams(new LayoutParams(300, LayoutParams.WRAP_CONTENT));
+			row_empty.setLayoutParams(new LayoutParams(300,
+					LayoutParams.WRAP_CONTENT));
 			TextView text_empty = new TextView(this);
 			text_empty.setWidth(300);
 
@@ -98,13 +95,14 @@ public class dailyFHNews extends Activity {
 		// String zum Entgegennehmen der News in der Form [?][3]
 		// ---> drei, da es Immer Überschrift, Datum und Inhalt gibt
 		try {
-			getFile();
-			parseFile();
+			newsFK.getFile();
+			newsFK.parseFile("news.xml");
 			designNews();
 		} catch (Exception e) {
 			// FIXME - Die Fehlermeldungen werden alle untereinander aufgereiht
 			this.deleteFile("news.xml");
-			Log.v("Fehler", "No Connection (GSM Modem support im Emulator aktiviert?)");
+			Log.v("Fehler",
+					"No Connection (GSM Modem support im Emulator aktiviert?)");
 			CharSequence styledText;
 			TableRow row_empty = new TableRow(this);
 			row_empty.setLayoutParams(new LayoutParams(300,
@@ -183,100 +181,6 @@ public class dailyFHNews extends Activity {
 			row_desc.addView(text_desc);
 			// der Tabelle wird die Zeile hinzugefügt
 			table.addView(row_desc);
-
 		}
-	}
-
-	public void parseFile() throws XmlPullParserException, IOException,	FileNotFoundException {
-		XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
-		factory.setNamespaceAware(true);
-		XmlPullParser xpp = factory.newPullParser();
-
-		boolean item = false;
-		boolean date = false;
-		boolean desc = false;
-		boolean title = false;
-		int i = 0;
-
-		FileInputStream inFile = openFileInput("news.xml");
-		InputStreamReader isr = new InputStreamReader(inFile, "iso-8859-15");
-		BufferedReader in = new BufferedReader(isr);
-
-		xpp.setInput(in);
-
-		int eventType = xpp.getEventType();
-		while (eventType != XmlPullParser.END_DOCUMENT) {
-			if (eventType == XmlPullParser.START_TAG) {
-				if (xpp.getName().equals("item")) {
-					item = true;
-				} else if (xpp.getName().equals("title") && item) {
-					title = true;
-				} else if (xpp.getName().equals("description") && item) {
-					desc = true;
-				} else if (xpp.getName().equals("pubDate") && item) {
-					date = true;
-				}
-			} else if (eventType == XmlPullParser.TEXT) {
-				if (item) {
-					if (title) {
-						if (i < 15) {
-							news[0][i] = xpp.getText();
-						}
-						title = false;
-					} else if (desc) {
-						if (i < 15) {
-							news[1][i] = xpp.getText();
-							news[1][i] = news[1][i].replaceAll("<br/>", "");
-							news[1][i] = news[1][i].replaceAll("<br>", "");
-							news[1][i] = news[1][i].replaceAll("<br />", "");
-						}
-						desc = false;
-					} else if (date) {
-						if (i < 15) {
-							news[2][i] = xpp.getText();
-							news[2][i] = news[2][i].replaceAll("\\+0200", "");
-						}
-						date = false;
-						i++;
-					}
-				}
-			} else if (eventType == XmlPullParser.END_TAG) {
-				if (xpp.getName().equals("item")) {
-					item = false;
-					title = false;
-					desc = false;
-					date = false;
-				}
-			}
-			eventType = xpp.next();
-		}
-	}
-
-	public void getFile() throws XmlPullParserException, IOException, IllegalStateException, MalformedURLException, 
-								ProtocolException, IOException, FileNotFoundException {
-
-		FileOutputStream os;
-		final String url_str = "http://www.inf.fh-dortmund.de/rss.php";
-
-		os = openFileOutput("news.xml", Context.MODE_PRIVATE);
-		URL url = new URL(url_str.replace(" ", "%20"));
-		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-		conn.setRequestMethod("GET");
-		conn.connect();
-
-		int responseCode = conn.getResponseCode();
-
-		if (responseCode == HttpURLConnection.HTTP_OK) {
-			byte tmp_buffer[] = new byte[4096];
-			InputStream is = conn.getInputStream();
-			int n;
-			while ((n = is.read(tmp_buffer)) > 0) {
-				os.write(tmp_buffer, 0, n);
-				os.flush();
-			}
-		} else {
-			throw new IllegalStateException("HTTP response: " + responseCode);
-		}
-		os.close();
 	}
 }

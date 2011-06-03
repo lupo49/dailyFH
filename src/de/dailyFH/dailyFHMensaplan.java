@@ -6,6 +6,8 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+
+import de.dailyFH.FK.MensaplanFK;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -31,8 +33,12 @@ public class dailyFHMensaplan extends Activity {
 	String datum5;
 	String doc;
 
+	private de.dailyFH.FK.MensaplanFK mensaplanFK;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+
+		mensaplanFK = new MensaplanFK();
 
 		// App Titelleiste ausblenden
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -89,7 +95,9 @@ public class dailyFHMensaplan extends Activity {
 						int position, long id) {
 					String text = (String) spinnerAuswahl.getAdapter().getItem(
 							position);
-					updateMensaMenueNord(text);
+					// FIXME - Es muessen Rueckgabewerte definiert werden.
+					mensaplanFK.updateMensaMenueNord(text, table);
+					designPlanNord(text);
 				}
 
 				@Override
@@ -110,7 +118,9 @@ public class dailyFHMensaplan extends Activity {
 						int position, long id) {
 					String text = (String) spinnerAuswahl.getAdapter().getItem(
 							position);
-					updateMensaMenueSonne(text);
+					// FIXME - Es muessen Rueckgabewerte definiert werden.
+					mensaplanFK.updateMensaMenueSonne(text, table);
+					designPlanSonne(text);
 				}
 
 				@Override
@@ -131,7 +141,9 @@ public class dailyFHMensaplan extends Activity {
 						int position, long id) {
 					String text = (String) spinnerAuswahl.getAdapter().getItem(
 							position);
-					updateMensaMenueKost(text);
+					// FIXME - Es muessen Rueckgabewerte definiert werden.
+					int i = mensaplanFK.updateMensaMenueKost(text, table);
+					designPlanKost(i, text);
 				}
 
 				@Override
@@ -142,59 +154,11 @@ public class dailyFHMensaplan extends Activity {
 		}
 	}
 
-	public void updateMensaMenueNord(String menue_Auswahl) {
-
-		// Alten Mensaplan entfernen
-		if (table.getChildCount() > 0) {
-			table.removeViews(0, table.getChildCount());
-		}
-		try {
-
-			parseFileNord(menue_Auswahl);
-			designPlanNord(menue_Auswahl);
-
-		} catch (Exception e) {
-			Log.v("Fehler", "Fehler");
-		}
-	}
-
-	public void updateMensaMenueSonne(String menue_Auswahl) {
-
-		// Alten Mensaplan entfernen
-		if (table.getChildCount() > 0) {
-			table.removeViews(0, table.getChildCount());
-		}
-		try {
-
-			parseFileSonne(menue_Auswahl);
-			designPlanSonne(menue_Auswahl);
-
-		} catch (Exception e) {
-			Log.v("Fehler", "Fehler");
-		}
-	}
-
-	public void updateMensaMenueKost(String menue_Auswahl) {
-
-		// Alten Mensaplan entfernen
-		if (table.getChildCount() > 0) {
-			table.removeViews(0, table.getChildCount());
-		}
-		try {
-
-			int i = parseFileKost(menue_Auswahl);
-			designPlanKost(i, menue_Auswahl);
-
-		} catch (Exception e) {
-			Log.v("Fehler", "Fehler");
-		}
-	}
-
 	// Funktion um die Mensadaten grafisch darzustellen
 	public void designPlanNord(String text) {
 
-		// Variable f�r die Anzahl der Men�s in den unterschiedlichen
-		// Men�punkten
+		// Variable für die Anzahl der Menüs in den unterschiedlichen
+		// Menüpunkten
 		int anzahl = 0;
 
 		if (text.equals("Aktuelles Tagesmenü")) {
@@ -212,7 +176,7 @@ public class dailyFHMensaplan extends Activity {
 			row_date.addView(text_date);
 			table.addView(row_date);
 		}
-		if (text.equals("Spezielle Men�s der Woche")) {
+		if (text.equals("Spezielle Menüs der Woche")) {
 			anzahl = 9;
 		}
 
@@ -350,110 +314,4 @@ public class dailyFHMensaplan extends Activity {
 
 	}
 
-	// HTML-File laden, parsen und gew�nschte Werte in die vorhandenen Variablen
-	// schreiben
-	public void parseFileNord(String text) throws IOException,
-			FileNotFoundException {
-
-		Document docu = Jsoup.connect(
-				"http://www.stwdo.de/Wochenplan.127.0.html").get();
-
-		if (text.equals("Spezielle Menüs der Woche"))
-			;
-		{
-			Elements spalte1 = docu.select("td.Tabellen-spalte-1");
-			for (int i = 0; i < 9; i++) {
-				Element menuename = spalte1.get(i);
-				menueS1[i] = menuename.text();
-				Log.v("Titel", menueS1[i]);
-			}
-			Elements spalte2 = docu.select("td.Tabellen-spalte-2");
-			for (int i = 0; i < 9; i++) {
-				Element menuebeschreibung = spalte2.get(i);
-				menueS2[i] = menuebeschreibung.text();
-				Log.v("Beschreibung", menueS2[i]);
-			}
-		}
-
-		if (text.equals("Aktuelles Tagesmenü")) {
-			Elements datums = docu.select("caption");
-			Element datum = datums.get(1);
-			datum5 = datum.text();
-			Log.v("Datum", datum.text());
-
-			Elements spalte1 = docu.select("td.Tabellen-spalte-1");
-			int i = 0;
-			while (!(spalte1.get(i + 8).equals(spalte1.get(12)))) {
-				Element menuename = spalte1.get(i + 9);
-				menueS1[i] = menuename.text();
-				Log.v("Titel", menueS1[i]);
-				i++;
-			}
-			Elements spalte2 = docu.select("td.Tabellen-spalte-2");
-			i = 0;
-			while (!(spalte2.get(i + 8).equals(spalte2.get(12)))) {
-				Element menuebeschreibung = spalte2.get(i + 9);
-				menueS2[i] = menuebeschreibung.text();
-				Log.v("Beschreibung", menueS2[i]);
-				i++;
-			}
-		}
-	}
-
-	public void parseFileSonne(String text) throws IOException,
-			FileNotFoundException {
-
-		Document docu = Jsoup.connect(
-				"http://www.stwdo.de/Wochenplan.132.0.html").get();
-
-		if (text.equals("Aktuelles Tagesmen�")) {
-			Elements datums = docu.select("caption");
-			Element datum = datums.get(1);
-			datum5 = datum.text();
-			Log.v("Datum", datum.text());
-
-			Elements spalte1 = docu.select("td.Tabellen-spalte-1");
-			int i = 0;
-			while (!(spalte1.get(i).equals(spalte1.get(3)))) {
-				Element menuename = spalte1.get(i);
-				menueS1[i] = menuename.text();
-				Log.v("Titel", menueS1[i]);
-				i++;
-			}
-			Elements spalte2 = docu.select("td.Tabellen-spalte-2");
-			i = 0;
-			while (!(spalte2.get(i).equals(spalte2.get(3)))) {
-				Element menuebeschreibung = spalte2.get(i);
-				menueS2[i] = menuebeschreibung.text();
-				Log.v("Beschreibung", menueS2[i]);
-				i++;
-			}
-		}
-	}
-
-	public int parseFileKost(String text) throws IOException,
-			FileNotFoundException {
-
-		Document docu = Jsoup.connect(
-				"http://www.stwdo.de/Wochenplan.248.0.html").get();
-		int i = 0;
-
-		if (text.equals("Aktuelles Tagesmenü")) {
-			Elements datums = docu.select("caption");
-			Element datum = datums.get(1);
-			datum5 = datum.text();
-			Log.v("Datum", datum.text());
-
-			Elements spalte2 = docu.select("td.Tabellen-spalte-2");
-			i = 0;
-			while (!(spalte2.get(i).text().equals("-"))) {
-				Element menuebeschreibung = spalte2.get(i);
-				menueS2[i] = menuebeschreibung.text();
-				menueS1[i] = "Men� " + (i + 1);
-				i++;
-			}
-
-		}
-		return i;
-	}
 }

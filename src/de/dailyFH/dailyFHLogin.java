@@ -1,11 +1,9 @@
 package de.dailyFH;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import de.dailyFH.FK.LoginFK;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View.OnClickListener;
@@ -20,16 +18,18 @@ public class dailyFHLogin extends Activity {
 	// Gui-Elemente
 	private Button submitButton;
 	private EditText pinEingabe;
-	private String eingabePin;
-	private String pin;
 	private Intent intent;
 	private Intent intentRegister;
 	private EditText MatrikelnummerEingabe;
 
+	private de.dailyFH.FK.LoginFK loginFK;
+	
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 
+		loginFK = new LoginFK();
+		
 		// App Titelleiste ausblenden
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 
@@ -60,16 +60,12 @@ public class dailyFHLogin extends Activity {
 			public void onClick(View v) {
 
 				// Pruefe Eingabe ab
-				if (pruefPin(pinEingabe.getText().toString(),
-						MatrikelnummerEingabe.getText().toString())) {
+				if (loginFK.pruefPin(pinEingabe.getText().toString(), MatrikelnummerEingabe.getText().toString())) {
 					// Pin ist gueltig
 					Log.i("1", "PIN ist korrekt gepr�ft worden");
-
 					// neue Activity starten
 					startActivity(intent);
-
-					// Beendet den Login-Bildschirm damit das Hauptmenue das
-					// erste ist
+					// Beendet den Login-Bildschirm damit das Hauptmenue das Erste ist
 					finish();
 				} else {
 					// Pin ist nicht gueltig
@@ -82,63 +78,13 @@ public class dailyFHLogin extends Activity {
 		}); // Ende OnClickListener
 
 		labelRegister.setOnClickListener(new OnClickListener() {
-
 			@Override
 			public void onClick(View v) {
 				// Neue Activity starten
 				startActivity(intentRegister);
-
 				// Login beenden
 				finish();
 			}
 		});
-
 	} // Ende onCreate
-
-	public boolean pruefPin(String pin, String matr) {
-
-		// Ausgaben zum Debuggen
-		Log.i("Methode", "pruefPin");
-		Log.i("Pin-eingabe", md5(pin));
-
-		// Variable f�r return
-		boolean erg = false;
-
-		// Preferencdatei
-		String file = matr + "_prefs";
-
-		// Preferences laden
-		SharedPreferences settings = getSharedPreferences(file, 0);
-
-		// Gespeicherte Daten zum Debuggen ausgeben
-		Log.i("PIN-saved", settings.getString("Pin", "0000"));
-		Log.i("MATR-saved", settings.getString("Matrikelnummer", "matrikel"));
-
-		// eingegeben Pin mit der gespeicherten abgleichen
-		if (md5(pin).equals(settings.getString("Pin", "0000"))) {
-			Log.i("preufPiN", "Ist gleich");
-			erg = true;
-		}
-		return erg;
-	}
-
-	private String md5(String in) {
-		MessageDigest digest;
-		try {
-			digest = MessageDigest.getInstance("MD5");
-			digest.reset();
-			digest.update(in.getBytes());
-			byte[] a = digest.digest();
-			int len = a.length;
-			StringBuilder sb = new StringBuilder(len << 1);
-			for (int i = 0; i < len; i++) {
-				sb.append(Character.forDigit((a[i] & 0xf0) >> 4, 16));
-				sb.append(Character.forDigit(a[i] & 0x0f, 16));
-			}
-			return sb.toString();
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
 }
