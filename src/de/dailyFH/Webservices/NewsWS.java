@@ -16,14 +16,14 @@ import android.content.Context;
 
 public class NewsWS extends Activity {
 
-	public void getFile() throws XmlPullParserException, IOException,
+	public void getFile(Context myContext) throws XmlPullParserException, IOException,
 			IllegalStateException, MalformedURLException, ProtocolException,
 			IOException, FileNotFoundException {
 
 		FileOutputStream os;
 		final String url_str = "http://www.inf.fh-dortmund.de/rss.php";
 
-		os = openFileOutput("news.xml", Context.MODE_PRIVATE);
+		os = myContext.openFileOutput("news.xml", Context.MODE_PRIVATE);
 		URL url = new URL(url_str.replace(" ", "%20"));
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		conn.setRequestMethod("GET");

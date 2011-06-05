@@ -3,6 +3,7 @@ package de.dailyFH;
 import de.dailyFH.FK.NewsFK;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Html;
@@ -65,7 +66,7 @@ public class dailyFHNews extends Activity {
 		}
 
 		try {
-			news = newsFK.parseFile("news.xml");
+			news = newsFK.parseFile(this.getApplicationContext());
 			designNews();
 		} catch (Exception e) {
 
@@ -95,8 +96,8 @@ public class dailyFHNews extends Activity {
 		// String zum Entgegennehmen der News in der Form [?][3]
 		// ---> drei, da es Immer Überschrift, Datum und Inhalt gibt
 		try {
-			if(newsFK.dateiLaden()) {
-				newsFK.parseFile("news.xml");
+			if(newsFK.dateiLaden(this.getApplicationContext())) {
+				newsFK.parseFile(this.getApplicationContext());
 				designNews();
 			}
 		} catch (Exception e) {

@@ -3,14 +3,10 @@ package de.dailyFH.FK;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
-import java.net.URL;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -20,16 +16,18 @@ import de.dailyFH.Webservices.NewsWS;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 
 public class NewsFK extends Activity {
 
 	String[][] news = new String[3][15];
 	private de.dailyFH.Webservices.NewsWS newsWS;
 	
-	public boolean dateiLaden() {
+	public boolean dateiLaden(Context myContext) {
+		
 		newsWS = new NewsWS();
 		try {
-			newsWS.getFile();
+			newsWS.getFile(myContext);
 			return true;
 		} catch (IllegalStateException e) {
 			e.printStackTrace();
@@ -47,7 +45,7 @@ public class NewsFK extends Activity {
 		return false;
 	}
 	
-	public String[][] parseFile(String dateiname) throws XmlPullParserException, IOException, FileNotFoundException {
+	public String[][] parseFile(Context myContext) throws XmlPullParserException, IOException, FileNotFoundException {
 		XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
 		factory.setNamespaceAware(true);
 		XmlPullParser xpp = factory.newPullParser();
@@ -58,7 +56,7 @@ public class NewsFK extends Activity {
 		boolean title = false;
 		int i = 0;
 
-		FileInputStream inFile = openFileInput(dateiname);
+		FileInputStream inFile = myContext.openFileInput("news.xml");
 		InputStreamReader isr = new InputStreamReader(inFile, "iso-8859-15");
 		BufferedReader in = new BufferedReader(isr);
 
@@ -110,7 +108,6 @@ public class NewsFK extends Activity {
 			}
 			eventType = xpp.next();
 		}
-		
 		return news;
 	}
 }
