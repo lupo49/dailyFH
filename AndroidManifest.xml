@@ -25,6 +25,11 @@
         <activity android:name=".dailyFHNews" android:label="@string/app_name" />
         <activity android:name=".dailyFHKalender" android:label="@string/app_name" />
 		<activity android:name=".dailyFHRegister" android:label="@string/app_name" />
-		
+		<activity android:name="de.dailyFH.FK.NewsFK" android:label="@string/app_name"></activity>
+		<activity android:name="de.dailyFH.FK.KalenderFK" android:label="@string/app_name"></activity>       
+        <activity android:name="de.dailyFH.FK.LoginFK" android:label="@string/app_name"></activity>
+		<activity android:name="de.dailyFH.FK.MensaplanFK" android:label="@string/app_name"></activity>       
+		<activity android:name="de.dailyFH.Webservices.NewsWS" android:label="@string/app_name"></activity>
+		<activity android:name="de.dailyFH.Webservices.MensaplanWS" android:label="@string/app_name"></activity>        
     </application>
 </manifest>
